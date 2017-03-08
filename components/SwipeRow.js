@@ -47,7 +47,7 @@ class SwipeRow extends Component {
 			onMoveShouldSetPanResponder: (e, gs) => this.handleOnMoveShouldSetPanResponder(e, gs),
 			onPanResponderMove: (e, gs) => this.handlePanResponderMove(e, gs),
 			onPanResponderRelease: (e, gs) => this.handlePanResponderEnd(e, gs),
-			onPanResponderTerminate: (e, gs) => this.handlePanResponderEnd(e, gs),
+			onPanResponderTerminate: (e, gs) => false,
 			onShouldBlockNativeResponder: _ => false,
 		});
 	}
