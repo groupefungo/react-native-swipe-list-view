@@ -28,44 +28,40 @@ class SwipeListView extends Component {
 	}
 
 	safeCloseOpenRow() {
-		new Promise((resolve) => {
-			// if the openCellId is stale due to deleting a row this could be undefined
-			if (this._rows[this.openCellId]) {
-				this._rows[this.openCellId].closeRow();
-			}
-
-			resolve(true);
-		});
-	}
-
-	async rowSwipeGestureBegan(id) {
-		if (this.props.closeOnRowBeginSwipe && this.openCellId && this.openCellId !== id) {
-			await this.safeCloseOpenRow();
+		// if the openCellId is stale due to deleting a row this could be undefined
+		if (this._rows[this.openCellId]) {
+			this._rows[this.openCellId].closeRow();
 		}
 	}
 
-	async onRowOpen(secId, rowId, rowMap) {
+	rowSwipeGestureBegan(id) {
+		if (this.props.closeOnRowBeginSwipe && this.openCellId && this.openCellId !== id) {
+			this.safeCloseOpenRow();
+		}
+	}
+
+	onRowOpen(secId, rowId, rowMap) {
 		const cellIdentifier = `${secId}${rowId}`;
 		if (this.openCellId && this.openCellId !== cellIdentifier) {
-			await this.safeCloseOpenRow();
+			this.safeCloseOpenRow();
 		}
 		this.openCellId = cellIdentifier;
 		this.props.onRowOpen && this.props.onRowOpen(secId, rowId, rowMap);
 	}
 
-	async onRowPress(id) {
+	onRowPress(id) {
 		if (this.openCellId) {
 			if (this.props.closeOnRowPress) {
-				await this.safeCloseOpenRow();
+				this.safeCloseOpenRow();
 				this.openCellId = null;
 			}
 		}
 	}
 
-	async onScroll(e) {
+	onScroll(e) {
 		if (this.openCellId) {
 			if (this.props.closeOnScroll) {
-				await this.safeCloseOpenRow();
+				this.safeCloseOpenRow();
 				this.openCellId = null;
 			}
 		}

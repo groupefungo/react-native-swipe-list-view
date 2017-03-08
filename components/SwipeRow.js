@@ -47,7 +47,7 @@ class SwipeRow extends Component {
 			onMoveShouldSetPanResponder: (e, gs) => this.handleOnMoveShouldSetPanResponder(e, gs),
 			onPanResponderMove: (e, gs) => this.handlePanResponderMove(e, gs),
 			onPanResponderRelease: (e, gs) => this.handlePanResponderEnd(e, gs),
-			onPanResponderTerminate: (e, gs) => this.handlePanResponderEnd(e, gs),
+			onPanResponderTerminate: (e, gs) => this.handlePanResponderEnd(e, gs, true),
 			onShouldBlockNativeResponder: _ => false,
 		});
 	}
@@ -107,6 +107,7 @@ class SwipeRow extends Component {
 
 			// user is moving horizontally
 			if (this.parentScrollEnabled) {
+				console.log('zicat')
 				// disable scrolling on the listView parent
 				this.parentScrollEnabled = false;
 				this.props.setScrollEnabled && this.props.setScrollEnabled(false);
@@ -136,9 +137,9 @@ class SwipeRow extends Component {
 		}
 	}
 
-	handlePanResponderEnd(e, gestureState) {
+	handlePanResponderEnd(e, gestureState, terminated = false) {
 		// re-enable scrolling on listView parent
-		if (!this.parentScrollEnabled) {
+		if (!terminated && !this.parentScrollEnabled) {
 			this.parentScrollEnabled = true;
 			this.props.setScrollEnabled && this.props.setScrollEnabled(true);
 		}
