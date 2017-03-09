@@ -107,7 +107,6 @@ class SwipeRow extends Component {
 
 			// user is moving horizontally
 			if (this.parentScrollEnabled) {
-				console.log('zicat')
 				// disable scrolling on the listView parent
 				this.parentScrollEnabled = false;
 				this.props.setScrollEnabled && this.props.setScrollEnabled(false);
