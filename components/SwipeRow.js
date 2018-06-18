@@ -2,7 +2,6 @@
 
 import React, {
 	Component,
-	PropTypes,
 } from 'react';
 import {
 	Animated,
@@ -12,6 +11,7 @@ import {
 	TouchableOpacity,
 	View
 } from 'react-native';
+import PropTypes from 'prop-types';
 
 const PREVIEW_OPEN_DELAY = 700;
 const PREVIEW_CLOSE_DELAY = 300;

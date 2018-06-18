@@ -2,7 +2,6 @@
 
 import React, {
 	Component,
-	PropTypes,
 } from 'react';
 import {
 	ListView,
@@ -11,6 +10,7 @@ import {
 } from 'react-native';
 
 import SwipeRow from './SwipeRow';
+import PropTypes from 'prop-types';
 
 /**
  * ListView that renders SwipeRows.
